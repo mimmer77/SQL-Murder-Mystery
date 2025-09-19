@@ -27,3 +27,4 @@ The killer is [Killer's Name]!
 The motive was [Briefly describe the motive, if you found one].
 Acknowledgments
 A huge thank you to the creator of the SQL Murder Mystery for building this brilliant and fun project. It's an excellent resource for anyone looking to practice their SQL skills.
+
