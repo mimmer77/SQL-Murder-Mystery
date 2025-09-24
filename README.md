@@ -16,15 +16,34 @@ My investigation was a step-by-step process of using SQL to uncover clues and na
 
 Final SQL Query
 Here is the final query that solved the case:
-SQL
--- Paste your final, well-commented SQL query here.
--- For example:
-SELECT *
-FROM crime_scene_report
-WHERE ...;
-Solution
-The killer is [Killer's Name]!
-The motive was [Briefly describe the motive, if you found one].
+
+SELECT
+    person.name
+FROM
+    person
+
+JOIN drivers_license
+    ON person.license_id = drivers_license.id
+
+JOIN facebook_event_checkin
+    ON person.id = facebook_event_checkin.person_id
+
+WHERE
+    drivers_license.car_make = "Tesla"
+    AND drivers_license.car_model = "Model S"
+    AND drivers_license.hair_color = "red"
+    AND drivers_license.height BETWEEN 65 AND 67
+    AND drivers_license.gender = "female"
+    AND facebook_event_checkin.date BETWEEN 20171201 AND 20171231
+    AND facebook_event_checkin.event_name = "SQL Symphony Concert"
+
+GROUP BY person.id
+HAVING COUNT(person.id) = 3;
+
+Solution: The killer is Jeremy Bowers!
+
+The motive was: The motive was that Jeremy Bowers was a hired killer who was paid by the mastermind to commit the crime. The mastermind, Miranda Priestly, wanted the victim dead to prevent her own secrets from being exposed.
+
 Acknowledgments
 A huge thank you to the creator of the SQL Murder Mystery for building this brilliant and fun project. It's an excellent resource for anyone looking to practice their SQL skills.
 
